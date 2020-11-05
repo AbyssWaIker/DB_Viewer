@@ -1,26 +1,24 @@
 <?php
+session_start();
 if(!isset($_POST['database_name'])||!isset($_POST['username'])||!isset($_POST['password']))
 {
-    if(isset($_COOKIE['login_error'])) setcookie ("login_error", "", time() - 3600);
-    setcookie('login_error', "No data is entered");
+    if(isset($_SESSION['login_error'])) $_SESSION['login_error'] = "No data is entered";
     header("Location: ../login.php");;
     exit();
 }
 
-// if (isset($_POST['database_name'])||isset($_POST['username'])||isset($_POST['password']))
-// {
-//     setcookie ("database_name", "", time() - 3600);
-//     setcookie ("username", "", time() - 3600);
-//     setcookie ("password", "", time() - 3600);
-// }
+if (isset($_SESSION['database_name'])||isset($_SESSION['username'])||isset($_SESSION['password']))
+{
+    $_SESSION = array();
+    // уничтожение куки с идентификатором сессии
+    if (session_id() != "" || isset($_COOKIE[session_name()]))
+        setcookie(session_name(), '', time()-2592000, '/');
+    session_destroy();
+}
 
-$options = array();
-$options['samesite'] = 'lax';
-$options['path'] = '/db/';
-
-setcookie('database_name', $_POST['database_name'],$options);
-setcookie('username', $_POST['username'],$options);
-setcookie('password', $_POST['password'],$options);
+$_SESSION['database_name'] = $_POST['database_name'];
+$_SESSION['username'] = $_POST['username'];
+$_SESSION['password'] = $_POST['password'];
 
 
 echo "everything is fine";

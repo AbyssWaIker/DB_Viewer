@@ -60,3 +60,8 @@ function check_table()
         }
     });
 };
+
+function exit()
+{
+    window.location ="php/exit.php";
+}

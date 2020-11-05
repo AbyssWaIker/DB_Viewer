@@ -15,7 +15,9 @@
 <body>
 
 <?php
-if(!isset($_COOKIE['database_name'])||!isset($_COOKIE['username'])||!isset($_COOKIE['password'])) 
+
+session_start();
+if(!isset($_SESSION['database_name'])||!isset($_SESSION['username'])||!isset($_SESSION['password'])) 
 {
     setcookie('login_error', "Please, enter database data");
     header('Location: login.php');
@@ -24,10 +26,12 @@ if(!isset($_COOKIE['database_name'])||!isset($_COOKIE['username'])||!isset($_COO
 
 setcookie('login_error',"", time() - 3600) 
 ?>
-
+<div class="navbar">
 <?php
 include('php/tablelist.php');
 ?>
+<button class="btn btn-danger" onclick="exit()">Exit</button>
+</div>
 <div class="table_container"><div id='here_goes_the_table'/> <div>
 
 <script src="js/jquery-3.5.1.min.js"></script>
