@@ -1,0 +1,48 @@
+.table_container
+{
+    padding: 10px 25px;
+    margin: 10px 25px;
+    align-items:center;
+    align-content:center;
+    align-self: center;
+}
+
+table
+{
+    border-collapse:separate; 
+    border-color: #333;
+}
+caption
+{
+    text-align:center;
+    caption-side: top;
+    font-size: x-large;
+    background:#333; 
+    color:white;
+}
+th
+{
+    color:white;
+    background:#333; 
+    outline-color:#333;
+}
+td
+{
+    padding:5px;
+    width:200px;
+    outline:ridge;
+    border:default; 
+    solid #ccc;
+}
+tr:nth-child(odd)
+{
+    background:#ddd
+}
+#active{
+    background:#FFF;
+    background-size:cover;
+    border-left:1px solid #333;
+    border-top:1px solid #333;
+    border-right:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+}
