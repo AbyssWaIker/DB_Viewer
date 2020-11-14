@@ -1,6 +1,5 @@
 <?php
 require_once('db.php');
-if(!isset($_SESSION['database_name'])) die("no database is set");
 
 $database_name = $_SESSION['database_name'];
 

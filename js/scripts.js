@@ -13,7 +13,23 @@ function key_pressed(event)
 function activate(element)
 {
     $(element).attr('id', 'active')
-    element.addEventListener("keydown", key_pressed);
+    var key_is_down=false;
+    element.addEventListener
+    ("keydown", 
+        function(event)
+        {
+            // Number 13 is the "Enter" key on the keyboard
+            if (event.keyCode === 13) 
+            {
+                if(key_is_down)return;
+                key_is_down=true;
+                // Cancel the default action, if needed
+                event.preventDefault();
+                // Trigger the button element with a click
+                element.blur();
+            }
+        }, false
+    );
 }
 function check_table() 
 {
@@ -65,12 +81,14 @@ function notify(message)
   if (Notification.permission === "granted") 
   {
     var notification = new Notification(message);
+    
   }
 }
 
 
 function update_in_db(element)
 {
+    element.removeEventListener("keydown", key_pressed);
     /*классы 0)имя таблицы sql 1) имя изменяемой колонки 2)id 3)имя колонки id*/
     $.ajax(
     {
@@ -87,8 +105,7 @@ function update_in_db(element)
         success:function(php_results)
         {
             notify(php_results);
-            element.removeEventListener("keydown", key_pressed);
-            $('#active').removeAttr('id');
+            $('#active').removeAttr('id');;
             check_table();
         }
     });

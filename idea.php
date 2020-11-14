@@ -1,13 +1,13 @@
 <?php
-
+//программа, которая может просмотреть (и редактировать) данные в любой базе данных
 $host='localhost';
-$dbname='dbname';
+$dbname='NWind';
 $username='test';
 $password='test';
 
 $db = NEW PDO("mysql:host=$host;dbname=$dbname",$username,$password);
 
-$table_name = 'employee';
+$table_name = 'OrderList';
 $LIMIT = 100;
 
 $result = $db->query("SELECT * FROM $table_name LIMIT $LIMIT");
@@ -45,3 +45,6 @@ for($x=0;$x<count($all);$x++)//пишем содержимое таблицы
 
 echo "</table>";
 ?>
+
+
+

@@ -5,7 +5,6 @@ include('sql/select_table.php');
 $col = $all[0];
 $columns = array();
 
-//echo '<pre>';
 
 foreach($col AS $key=>$value)
 {
@@ -18,7 +17,7 @@ foreach($col AS $key=>$value)
 echo "<table id='theTable' class='text-center'>";
 
 echo "<caption id='table_name'>".strtoupper($table_name)."</caption>";
-for($i=0;$i<count($columns);$i++) //начинаем с 1 потому что на нуле id, который мы не хотим показывать
+for($i=0;$i<count($columns);$i++) 
 {
     echo "<th>$columns[$i]</th>";
 }
@@ -30,12 +29,16 @@ include('table_elements/row_to_insert.php');
 for($x=0;$x<count($all);$x++)
 {
     echo '<tr>';
-    for($y=0;$y<count($columns);$y++) //начинаем с 1 потому что на нуле id, который мы не хотим показывать
+    for($y=0;$y<count($columns);$y++) 
     {
         echo 
         "<td> 
             <div 
-            contenteditable='true' class='".$table_name." ".$columns[$y]." ".$all[$x][0]." ".$columns[0]."'  onclick='activate(this)' onBlur='update_in_db(this)'>".$all[$x][$y]."
+            contenteditable='true'  
+            onclick='activate(this)'
+            onBlur='update_in_db(this)'
+            class='".$table_name." ".$columns[$y]." ".$all[$x][0]." ".$columns[0]."'>
+            ".$all[$x][$y]."
             </div>
         </td>";
         /*классы 1)имя таблицы sql 2) имя изменяемой колнки 3)id 4)имя колонки id*/
@@ -45,4 +48,5 @@ for($x=0;$x<count($all);$x++)
 }
 
 echo "</table>";
+
 ?>

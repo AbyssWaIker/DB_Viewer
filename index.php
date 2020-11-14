@@ -19,9 +19,7 @@
 session_start();
 if(!isset($_SESSION['database_name'])||!isset($_SESSION['encr_username'])||!isset($_SESSION['encr_password'])) 
 {
-    echo "<script>
-            notify('Error: No data is entered');
-          </script>";
+    setcookie ('login_error','No data is set',['samesite' => 'Lax']);
     header('Location: login.php');
     exit();
 }

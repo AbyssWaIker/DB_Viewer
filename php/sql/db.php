@@ -3,15 +3,12 @@ function connect_to_db($dbname, $username, $password)
 {
     try
     {
-    $db = NEW PDO("mysql:host=localhost;dbname=$dbname",$username,$password);
+    $db = NEW PDO('mysql:host=localhost;dbname='.$dbname,$username,$password);
     }
     catch(PDOException $e)
     {
-        echo "<script src='js/scripts.js'></script>
-              <script>
-                notify('Error: $e->getMessage()');
-              </script>";
-        header("Location: /db/login.php");
+        setcookie ('login_error',"Error while connecting to database:\n$e->getMessage()",['samesite' => 'Lax']);
+        header('Location: /db/login.php');
         exit();
     }
     return $db;
@@ -19,7 +16,12 @@ function connect_to_db($dbname, $username, $password)
 
 if (session_id() == "")
   session_start();
-if(!isset($_SESSION['database_name'])||!isset($_SESSION['encr_username'])||!isset($_SESSION['encr_password'])) die("no cookies are found");
+if(!isset($_SESSION['database_name'])||!isset($_SESSION['encr_username'])||!isset($_SESSION['encr_password'])) 
+{
+    setcookie ('login_error','No data is entered',['samesite' => 'Lax']);
+    header('Location: /db/login.php');
+    die('No data is entered');
+}
 
 $username= $_SESSION['encr_username'] ^ session_id();
 $password = $_SESSION['encr_password'] ^ session_id();

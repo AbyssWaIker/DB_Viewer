@@ -4,6 +4,7 @@ require_once 'db.php';
 
 if(!isset($_POST['id']))
 {
+    echo 'Error with provided data';
     print_r($_POST);
     die();
 }
