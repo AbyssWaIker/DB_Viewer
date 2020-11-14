@@ -8,7 +8,7 @@
 <body>
 	<div class="container">
 	<img src="img/database.svg"/>
-		<form action="php/validate.php" method="post">
+		<form action="php/set_session.php" method="post">
 			<div class="form-input">
 				<input type="text" required name="database_name" placeholder="database name"/>	
 			</div>

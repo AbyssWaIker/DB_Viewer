@@ -2,12 +2,12 @@
 session_start();
 if(!isset($_POST['database_name'])||!isset($_POST['username'])||!isset($_POST['password']))
 {
-    if(isset($_SESSION['login_error'])) $_SESSION['login_error'] = "No data is entered";
+    $_SESSION['login_error'] = "No data is entered";
     header("Location: ../login.php");;
     exit();
 }
 
-if (isset($_SESSION['database_name'])||isset($_SESSION['username'])||isset($_SESSION['password']))
+if (isset($_SESSION['database_name'])||isset($_SESSION['encr_username'])||isset($_SESSION['encr_password']))
 {
     $_SESSION = array();
     // уничтожение куки с идентификатором сессии
@@ -17,8 +17,8 @@ if (isset($_SESSION['database_name'])||isset($_SESSION['username'])||isset($_SES
 }
 
 $_SESSION['database_name'] = $_POST['database_name'];
-$_SESSION['username'] = $_POST['username'];
-$_SESSION['password'] = $_POST['password'];
+$_SESSION['encr_username'] = $_POST['username'] ^ session_id();
+$_SESSION['encr_password'] = $_POST['password'] ^ session_id();
 
 
 echo "everything is fine";

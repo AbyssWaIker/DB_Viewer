@@ -1,7 +1,5 @@
 .table_container
 {
-    padding: 10px 25px;
-    margin: 10px 25px;
     align-items:center;
     align-content:center;
     align-self: center;
@@ -9,6 +7,7 @@
 
 table
 {
+    border:1;
     border-collapse:separate; 
     border-color: #333;
 }
@@ -26,6 +25,12 @@ th
     background:#333; 
     outline-color:#333;
 }
+#plus
+{
+    color:white;
+    background:#3b3; 
+    outline-color:#333;
+}
 td
 {
     padding:5px;
@@ -34,9 +39,32 @@ td
     border:default; 
     solid #ccc;
 }
+td.delete
+{
+    color:white;
+    background:#d33; 
+    outline-color:#333;
+}
+img.delete
+{
+    width:30%;
+    height:auto;
+}
 tr:nth-child(odd)
 {
     background:#ddd
+}
+tr.insert
+{
+    background:#FFF;
+    background-size:cover;
+    border-left:1px solid #333;
+    border-top:1px solid #333;
+    border-right:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+}
+#rowToInsert{
+    visibility:collapse;
 }
 #active{
     background:#FFF;
